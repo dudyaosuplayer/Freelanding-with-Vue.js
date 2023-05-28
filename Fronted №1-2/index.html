@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="app">
+    <header
+    v-if="showList || shouldShowList"
+    v-cloak
+    >
+        <nav class="header-list">
+            <ul class="site-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about_me">About me</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contacts">Contacts</a></li>
+            </ul>
+            <hr class="vector">
+        </nav>
+    </header>
+    <main>
+        <!-- Первый этаж -->
+        <section id="home" class="stage-1">
+            <div class="info">
+                <h1 class="name">Denis Novik</h1>
+                <p class="text-stage1">UX | UI designer 24 years old, Minsk</p>
+                <div class="lang-container" v-if="showList || shouldShowList">
+                    <span class="lang">
+                        <button class="lang_ru" :class="{'active' : activeBtn === 'buttonRu'}" @click="setActiveBtn('buttonRu')">RU</button>&nbsp;|&nbsp;<button class="lang_en" :class="{'active' : activeBtn === 'buttonEng'}" @click="setActiveBtn('buttonEng')">ENG</button>
+                    </span>
+                </div>
+            </div>
+            <button class="burger" @click="toggleList"><img :src="showList ? 'img/cross.svg' : 'img/burger.svg'" alt="burger"></button>
+            <!-- Контейнер для замены изображения -->
+            <div class="img-el"></div>
+        </section>
+        <!-- Второй этаж -->
+        <section id="about_me" class="stage-2">
+            <div class="content-stage2">
+                <h1 class="stage-2-header" onclick="toggleLanguage()">About me</h1>
+                <span class="text-stage2">
+                    <p>Hi, I'm Denis – UX/UI designer from Minsk.<br> I'm interested in design and everything connected with it.</p>
+                    <p>I'm studying at courses "Web and mobile design <br>
+                        interfaces" in IT-Academy.</p>
+                    <p>Ready to implement excellent projects <br> with wonderful people.</p>
+                </span>
+                <div class="updated">Updated: {{ updateTime }}</div>
+            </div>
+        </section>
+        <!-- Третий этаж -->
+        <section id="skills" class="stage-3">
+            <h1>Skills</h1>
+            <p>I work in such programs as</p>
+            <div class="apps">
+                <div class="prog">
+                    <img src="img/ps.svg" width="88" height="88" alt="">
+                    <p class="prog-text">Adobe <br> Photoshop</p>
+                    <div class="stars">
+                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
+                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
+                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
+                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
+                        <img src="img/gray-star.svg" width="26" height="26" alt="Empty star">
+                    </div>
+                </div>
+                <div class="prog">
+                    <img src="img/ilus.svg" width="88" height="88" alt="">
+                    <p class="prog-text">Adobe <br> Illustrator</p>
+                    <div class="stars">
+                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
+                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
+                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
+                        <img src="img/gray-star.svg" width="26" height="26" alt="Empty star">
+                        <img src="img/gray-star.svg" width="26" height="26" alt="Empty star">
+                    </div>
+                </div>
+                <div class="prog">
+                    <img src="img/ae.svg" width="88" height="88" alt="">
+                    <p class="prog-text">Adobe <br> After Effects</p>
+                    <div class="stars">
+                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
+                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
+                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
+                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
+                        <img src="img/gray-star.svg" width="26" height="26" alt="Empty star">
+                    </div>
+                </div>
+                <div class="prog">
+                    <img src="img/figma.svg" width="88" height="88" alt="">
+                    <p class="prog-text">Figma</p>
+                    <div class="stars">
+                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
+                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
+                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
+                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
+                        <img src="img/gray-star.svg" width="26" height="26" alt="Empty star">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Четвертый этаж -->
+        <section id="portfolio" class="stage-4">
+            <h1>Portfolio</h1>
+            <div class="art">
+                <img src="img/homepage.jpg" max-width="950" min-height="520" alt="Fashion store Homepage">
+                <p>Online fashion store - Homepage</p>
+            </div>
+            <div class="art">
+                <img src="img/reebok_web.jpg" max-width="950" min-height="520" alt="Reebok Landing">
+                <p>Reebok Store - Concept</p>
+            </div>
+            <div class="art">
+                <img src="img/braun.jpg" max-width="950" min-height="520" alt="Braun Landing">
+                <p>Braun Landing Page - Concept</p>
+            </div>
+        </section>
+    </main>
+    <footer id="contacts">
+        <h1>Contacts</h1>
+        <p class="footer-text-1">Want to know more or just chat? <br> You are welcome!</p>
+        <button>Send message</button>
+        <div class="socials">
+            <img src="img/linkedin.svg" width="40" height="40" alt="LinkedIn">
+            <img src="img/insta.svg" width="40" height="40" alt="Instagram">
+            <img src="img/behance.svg" width="40" height="40" alt="Behance">
+            <img src="img/dribble.svg" width="40" height="40" alt="Dribble">
+        </div>
+        <p class="footer-text-2">Like me on <br> LinkedIn, Instagram, Behance, Dribble</p>
+    </footer>
+</body>
+<script src="script_2.js"></script>
+<script src="script_1.js"></script>
+</html>
