@@ -15,11 +15,7 @@
     >
         <nav class="header-list">
             <ul class="site-menu">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about_me">About me</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contacts">Contacts</a></li>
+                <li v-for="item in menuItems" :key="item.id"><a :href="item.link">{{ item.text }}</a></li>
             </ul>
             <hr class="vector">
         </nav>
@@ -58,48 +54,11 @@
             <h1>Skills</h1>
             <p>I work in such programs as</p>
             <div class="apps">
-                <div class="prog">
-                    <img src="img/ps.svg" width="88" height="88" alt="">
-                    <p class="prog-text">Adobe <br> Photoshop</p>
+                <div class="prog" v-for="prog in progs" :key="prog.id">
+                    <img :src="prog.image" width="88" height="88" :alt="prog.alt">
+                    <p class="prog-text" v-html="prog.name">{{ prog.name }}</p>
                     <div class="stars">
-                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
-                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
-                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
-                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
-                        <img src="img/gray-star.svg" width="26" height="26" alt="Empty star">
-                    </div>
-                </div>
-                <div class="prog">
-                    <img src="img/ilus.svg" width="88" height="88" alt="">
-                    <p class="prog-text">Adobe <br> Illustrator</p>
-                    <div class="stars">
-                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
-                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
-                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
-                        <img src="img/gray-star.svg" width="26" height="26" alt="Empty star">
-                        <img src="img/gray-star.svg" width="26" height="26" alt="Empty star">
-                    </div>
-                </div>
-                <div class="prog">
-                    <img src="img/ae.svg" width="88" height="88" alt="">
-                    <p class="prog-text">Adobe <br> After Effects</p>
-                    <div class="stars">
-                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
-                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
-                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
-                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
-                        <img src="img/gray-star.svg" width="26" height="26" alt="Empty star">
-                    </div>
-                </div>
-                <div class="prog">
-                    <img src="img/figma.svg" width="88" height="88" alt="">
-                    <p class="prog-text">Figma</p>
-                    <div class="stars">
-                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
-                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
-                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
-                        <img src="img/star.svg" width="26" height="26" alt="Filled star">
-                        <img src="img/gray-star.svg" width="26" height="26" alt="Empty star">
+                        <img v-for="star in prog.stars" :key="star.id" :src="star.image" width="26" height="26" :alt="star.alt">
                     </div>
                 </div>
             </div>
@@ -107,17 +66,9 @@
         <!-- Четвертый этаж -->
         <section id="portfolio" class="stage-4">
             <h1>Portfolio</h1>
-            <div class="art">
-                <img src="img/homepage.jpg" max-width="950" min-height="520" alt="Fashion store Homepage">
-                <p>Online fashion store - Homepage</p>
-            </div>
-            <div class="art">
-                <img src="img/reebok_web.jpg" max-width="950" min-height="520" alt="Reebok Landing">
-                <p>Reebok Store - Concept</p>
-            </div>
-            <div class="art">
-                <img src="img/braun.jpg" max-width="950" min-height="520" alt="Braun Landing">
-                <p>Braun Landing Page - Concept</p>
+            <div class="art" v-for="item in portfolioItems" :key="item.id">
+                <img :src="'img/' + item.src" max-width="950" min-height="520" :alt="item.alt">
+                <p>{{ item.text }}</p>
             </div>
         </section>
     </main>
@@ -126,10 +77,7 @@
         <p class="footer-text-1">Want to know more or just chat? <br> You are welcome!</p>
         <button>Send message</button>
         <div class="socials">
-            <img src="img/linkedin.svg" width="40" height="40" alt="LinkedIn">
-            <img src="img/insta.svg" width="40" height="40" alt="Instagram">
-            <img src="img/behance.svg" width="40" height="40" alt="Behance">
-            <img src="img/dribble.svg" width="40" height="40" alt="Dribble">
+            <img :src="'img/' + item.src" width="40" height="40" :alt="item.alt" v-for="item in socialsImg" :key="item.id">
         </div>
         <p class="footer-text-2">Like me on <br> LinkedIn, Instagram, Behance, Dribble</p>
     </footer>
