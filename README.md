@@ -1,2 +1,1 @@
-# ProfSoft2023
-Тестовое задание(JS, Vue.js, AJAX, SQL)
+JS, Vue.js, AJAX, SQL
